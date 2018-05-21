@@ -235,3 +235,14 @@ p {
     padding: 5px 10px;
     cursor: pointer;
 }
+
+.rate-score {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.rate-score li {
+    padding: 0 5px;
+}

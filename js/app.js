@@ -4,6 +4,7 @@
      */
     const move = $('.moves');
     const deck = $('.deck');
+    const rate = $('.stars');
     let card = $('.card'),
         openCards = [],
         restart = $('.restart'),
@@ -11,25 +12,6 @@
         numberOfMatch = 0,
         numberOfPairCards = deckCards.length / 2,
         moveNumber = 0;
-
-    // Shuffle function from http://stackoverflow.com/a/2450976
-    function shuffle(array) {
-        var currentIndex = array.length,
-            temporaryValue, randomIndex;
-
-        while (currentIndex !== 0) {
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex -= 1;
-            temporaryValue = array[currentIndex];
-            array[currentIndex] = array[randomIndex];
-            array[randomIndex] = temporaryValue;
-        }
-
-        return array;
-    }
-
-
-
     /*
      * set up the event listener for a card. If a card is clicked:
      *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -50,6 +32,22 @@
     $(document).on('click', '.modal-btn', restartGame);
 
     // functions 
+
+    // Shuffle function from http://stackoverflow.com/a/2450976
+    function shuffle(array) {
+        var currentIndex = array.length,
+            temporaryValue, randomIndex;
+
+        while (currentIndex !== 0) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+        return array;
+    }
 
     function intial(array) {
         let html = "";
@@ -74,7 +72,6 @@
             if (openCards[0] == cardName) {
                 numberOfMatch++;
                 moveNumber++;
-                console.log('match');
                 $(deck).find('.open').addClass('match').removeClass('open show');
 
             } else {
@@ -90,15 +87,22 @@
 
         move.text(moveNumber);
         if (numberOfMatch == numberOfPairCards) {
+            let html = '<li><i class="fa fa-star"></i></li>';
+            if (moveNumber < 14) {
+                html += html + html;
+            } else if (moveNumber >= 14 && moveNumber <= 20) {
+                html += html;
+            }
             let modal = ` <div class="modal">
                             <div class="modal-body">
                                 <h2>Congratulations! You have Won the Game</h2>
+                                <ul class="rate-score"><li>Your Score is </li>${html}</ul>
                                 <p>You completed the game in <span class="number-moves">${moveNumber}</span> moves</p>
                                 <p><button class="modal-btn"> <i class="fa fa-repeat"></i></button> Restart Game</p>
     
                             </div>
                         </div>`;
-
+            rate.html(html);
             $('body').append(modal);
         }
     }
@@ -111,29 +115,6 @@
         moveNumber = 0;
         $('.modal').remove();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
