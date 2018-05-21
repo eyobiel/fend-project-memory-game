@@ -68,9 +68,12 @@ h1 {
 }
 
 .deck .card.open {
-    transform: rotateY(0);
+    /* transform: rotateY(0); */
     background: #02b3e4;
     cursor: default;
+    -webkit-animation: open-animation 0.5s;
+    -moz-animation: open-animation 0.5s;
+    -o-animation: open-animation 0.5s;
 }
 
 .deck .card.show {
@@ -79,13 +82,18 @@ h1 {
 
 .deck .card.show.unmatch {
     background: red;
-    transform: rotateY(45);
+    -webkit-animation: unmatch-animation 1s;
+    -moz-animation: unmatch-animation 1s;
+    -o-animation: unmatch-animation 1s;
 }
 
 .deck .card.match {
     cursor: default;
     background: #02ccba;
     font-size: 33px;
+    -webkit-animation: match-animation 1s;
+    -moz-animation: match-animation 1s;
+    -o-animation: match-animation 1s;
 }
 
 
@@ -114,4 +122,74 @@ h1 {
 .score-panel .restart {
     float: right;
     cursor: pointer;
+}
+
+.restart span {
+    padding-left: 10px;
+}
+
+@-webkit-keyframes open-animation {
+    0% {
+        -webkit-transform: rotateY(0);
+    }
+    25% {
+        -webkit-transform: rotateY(90deg);
+    }
+    50% {
+        -webkit-transform: rotateY(180deg);
+    }
+    75% {
+        -webkit-transform: rotateY(270deg);
+    }
+    100% {
+        -webkit-transform: rotateY(360deg);
+    }
+}
+
+@-webkit-keyframes match-animation {
+    from {
+        background-color: rgba(170, 126, 205, 1);
+    }
+    to {
+        background-color: rgba(2, 204, 186, 1);
+    }
+    0% {
+        -webkit-transform: translate(1px, 1px) rotate(4deg);
+    }
+    25% {
+        -webkit-transform: translate(-1px, -1px) rotate(-4deg);
+    }
+    50% {
+        -webkit-transform: translate(1px, 1px) rotate(4deg);
+    }
+    75% {
+        -webkit-transform: translate(-1px, -1px) rotate(-4deg);
+    }
+    100% {
+        -webkit-transform: translate(1px, 1px) rotate(4deg);
+    }
+}
+
+@-webkit-keyframes unmatch-animation {
+    from {
+        background-color: rgb(170, 126, 205, 1);
+    }
+    to {
+        background-color: rgb(255, 0, 0, 1);
+    }
+    0% {
+        -webkit-transform: translate(1px, 1px) rotate(4deg);
+    }
+    25% {
+        -webkit-transform: translate(-1px, -1px) rotate(-4deg);
+    }
+    50% {
+        -webkit-transform: translate(1px, 1px) rotate(4deg);
+    }
+    75% {
+        -webkit-transform: translate(-1px, -1px) rotate(-4deg);
+    }
+    100% {
+        -webkit-transform: translate(1px, 1px) rotate(4deg);
+    }
 }
