@@ -193,3 +193,45 @@ h1 {
         -webkit-transform: translate(1px, 1px) rotate(4deg);
     }
 }
+
+
+/* style for modal box */
+
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgb(170, 126, 205, 0.2);
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    overflow: hidden;
+}
+
+.modal-body {
+    display: inline-block;
+    width: 50%;
+    min-height: 300px;
+    margin-top: 8%;
+    justify-content: center;
+    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+    padding: 32px;
+    border-radius: 10px;
+    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+    /* background-color: red; */
+}
+
+.modal-body h2,
+p {
+    text-align: center;
+}
+
+.modal-btn {
+    border-radius: 5px;
+    background: rgb(226, 255, 252, 0.5);
+    border: 0;
+    padding: 5px 10px;
+    cursor: pointer;
+}

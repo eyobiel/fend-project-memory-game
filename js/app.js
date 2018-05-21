@@ -1,6 +1,6 @@
 (function() {
     /*
-     * Create a list that holds all of your cards
+     * List of variables
      */
     const move = $('.moves');
     const deck = $('.deck');
@@ -9,16 +9,8 @@
         restart = $('.restart'),
         deckCards =   ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt", "fa fa-cube", "fa fa-anchor", "fa fa-leaf", "fa fa-bicycle", "fa fa-diamond", "fa fa-bomb", "fa fa-leaf", "fa fa-bomb", "fa fa-bolt", "fa fa-bicycle", "fa fa-paper-plane-o", "fa fa-cube"],
         numberOfMatch = 0,
+        numberOfPairCards = deckCards.length / 2,
         moveNumber = 0;
-
-
-
-    /*
-     * Display the cards on the page
-     *   - shuffle the list of cards using the provided "shuffle" method below
-     *   - loop through each card and create its HTML
-     *   - add each card's HTML to the page
-     */
 
     // Shuffle function from http://stackoverflow.com/a/2450976
     function shuffle(array) {
@@ -35,7 +27,8 @@
 
         return array;
     }
-    intial(shuffle(deckCards));
+
+
 
     /*
      * set up the event listener for a card. If a card is clicked:
@@ -47,13 +40,16 @@
      *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
      *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
      */
-    restart.on('click', function(e) {
+    // start Game
+    intial(shuffle(deckCards));
+    // Event listner for cards on click
+    deck.on('click', '.card', openAndMatchCard);
+    // Restart Game
+    restart.on('click', restartGame);
+    // Restart Game and remove modal box
+    $(document).on('click', '.modal-btn', restartGame);
 
-        intial(shuffle(deckCards));
-        move.text(0);
-        numberOfMatch = 0;
-        moveNumber = 0;
-    })
+    // functions 
 
     function intial(array) {
         let html = "";
@@ -65,25 +61,16 @@
         deck.html(html);
     }
 
-
-
-    deck.on('click', '.card', clickCard);
-
-    function clickCard(e) {
+    function openAndMatchCard(e) {
         let el = $(this);
         let card = $('.card');
         let cardName = el.find('i').attr('class');
 
         if (el.hasClass('show') || el.hasClass('match')) { return true; }
-
-
-
         el.addClass('open show');
         openCards.push(cardName);
 
         if (openCards.length > 1) {
-
-            console.log(openCards.indexOf(cardName) + " " + cardName);
             if (openCards[0] == cardName) {
                 numberOfMatch++;
                 moveNumber++;
@@ -98,17 +85,42 @@
                     $(deck).find('.open').removeClass('open show unmatch');
                 }, 700);
             }
-
             openCards = [];
-
         }
 
         move.text(moveNumber);
-        console.log(openCards);
-        console.log(numberOfMatch);
+        if (numberOfMatch == numberOfPairCards) {
+            let modal = ` <div class="modal">
+                            <div class="modal-body">
+                                <h2>Congratulations! You have Won the Game</h2>
+                                <p>You completed the game in <span class="number-moves">${moveNumber}</span> moves</p>
+                                <p><button class="modal-btn"> <i class="fa fa-repeat"></i></button> Restart Game</p>
+    
+                            </div>
+                        </div>`;
 
-
+            $('body').append(modal);
+        }
     }
+
+
+    function restartGame(e) {
+        intial(shuffle(deckCards));
+        move.text(0);
+        numberOfMatch = 0;
+        moveNumber = 0;
+        $('.modal').remove();
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 
