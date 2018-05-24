@@ -64,6 +64,7 @@
         let card = $('.card');
         let cardName = el.find('i').attr('class');
 
+        //prevent clicking on opened and matched cards
         if (el.hasClass('show') || el.hasClass('match')) { return true; }
         el.addClass('open show');
         openCards.push(cardName);
@@ -113,6 +114,7 @@
         move.text(0);
         numberOfMatch = 0;
         moveNumber = 0;
+        openCards = [];
         $('.modal').remove();
     }
 
