@@ -12,6 +12,8 @@
         numberOfMatch = 0,
         numberOfPairCards = deckCards.length / 2,
         moveNumber = 0;
+
+
     /*
      * set up the event listener for a card. If a card is clicked:
      *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -24,6 +26,7 @@
      */
     // start Game
     intial(shuffle(deckCards));
+
     // Event listner for cards on click
     deck.on('click', '.card', openAndMatchCard);
     // Restart Game
@@ -57,6 +60,7 @@
                     </li>`;
         });
         deck.html(html);
+        rate.html(scoreStars(moveNumber));
     }
 
     function openAndMatchCard(e) {
@@ -68,6 +72,7 @@
         if (el.hasClass('show') || el.hasClass('match')) { return true; }
         el.addClass('open show');
         openCards.push(cardName);
+
 
         if (openCards.length > 1) {
             if (openCards[0] == cardName) {
@@ -87,35 +92,48 @@
         }
 
         move.text(moveNumber);
+        rate.html(scoreStars(moveNumber));
+
+
+
         if (numberOfMatch == numberOfPairCards) {
-            let html = '<li><i class="fa fa-star"></i></li>';
-            if (moveNumber < 14) {
-                html += html + html;
-            } else if (moveNumber >= 14 && moveNumber <= 20) {
-                html += html;
-            }
+            let rate = "";
+            rate = scoreStars(moveNumber);
             let modal = ` <div class="modal">
                             <div class="modal-body">
                                 <h2>Congratulations! You have Won the Game</h2>
-                                <ul class="rate-score"><li>Your Score is </li>${html}</ul>
+                                <ul class="rate-score"><li>Your Score is </li>${rate}</ul>
                                 <p>You completed the game in <span class="number-moves">${moveNumber}</span> moves</p>
                                 <p><button class="modal-btn"> <i class="fa fa-repeat"></i></button> Restart Game</p>
     
                             </div>
                         </div>`;
-            rate.html(html);
+
             $('body').append(modal);
         }
     }
 
 
-    function restartGame(e) {
+    function restartGame() {
         intial(shuffle(deckCards));
         move.text(0);
         numberOfMatch = 0;
         moveNumber = 0;
         openCards = [];
         $('.modal').remove();
+        rate.html(scoreStars(moveNumber));
+    }
+
+    function scoreStars(moveNumber) {
+        let html = '<li><i class="fa fa-star"></i></li>';
+        let rateStars = html.repeat(3);
+        if (moveNumber > 16 && moveNumber <= 22) {
+            rateStars = html.repeat(2);
+        } else if (moveNumber > 22) {
+            rateStars = html;
+        }
+        return rateStars;
+
     }
 
 
