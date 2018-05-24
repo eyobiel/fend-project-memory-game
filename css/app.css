@@ -103,7 +103,7 @@ h1 {
 
 .score-panel {
     text-align: left;
-    width: 345px;
+    width: 430px;
     margin-bottom: 10px;
 }
 
@@ -126,6 +126,12 @@ h1 {
 
 .restart span {
     padding-left: 10px;
+}
+
+.timer,
+.score,
+.moves {
+    padding: 0 5px;
 }
 
 @-webkit-keyframes open-animation {
