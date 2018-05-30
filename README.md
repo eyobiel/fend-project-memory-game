@@ -1,20 +1,21 @@
 # Memory Game Project
 
-## Table of Contents
+This game is one of Udacity Front-End Nanodegree projects. 
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+The Memory game is a browser game, which tests your memory skills by matching pair of same cards.
 
-## Instructions
+## Dependencies
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+- [Google Fonts](https://fonts.googleapis.com/css?family=Coda)
+- [Font Awesome](https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css)
+- [Jquery](https://code.jquery.com/jquery-3.3.1.js)
 
-To get started, open `js/app.js` and start building out the app's functionality
+## Getting Started
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+Clone or download the files from this repo and open index.html in your browser.
 
-## Contributing
+## How to play
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+Click the hidden cards to reveal them, if the two opened cards matches they will stay open. The game ends once all cards are correctly matched. At the end of the game you will get your score results which is based on the number of moves you have taken to match all the cards and the time spent to finish the game.
 
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+

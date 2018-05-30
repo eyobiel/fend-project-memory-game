@@ -117,6 +117,8 @@
                         </div>`;
 
             $('body').append(modal);
+            $('.timer').html(elapsedTime);
+
 
         }
     }
